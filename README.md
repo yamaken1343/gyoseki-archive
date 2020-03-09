@@ -1,7 +1,7 @@
 # 研究室向け業績アーカイブ
 ## 特徴
-- 筆頭著者ごとに業績を表示
-- タグによる管理
+- 著者, 雑誌名, 年度, PDF等を一元管理
+- タグによる管理が可能
 - bibtexを含む多様な表示形式
 - docker-composeによる起動(https://github.com/yamaken1343/gyoseki-docker )
 
