@@ -28,7 +28,7 @@ python3 manage.py runserver 0.0.0.0:8001
 
 # Access on http://localhost:8001
 ```
-起動後, 管理者ページ(http://localuost:8001/admin/ )にアクセスして
+起動後, 管理者ページ(http://localhost:8001/admin/ )にアクセスして
 - Authors (筆頭著者)
 - divisions (業績区分: 学術論文, 学位論文, 学会 等)
 - languages (言語)
