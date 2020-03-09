@@ -1,0 +1,41 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>{{ tag.name }}</h1>#}
+{##}
+{#{% if recode_list %}#}
+{#    <ul>#}
+{#    {% for r in recode_list %}#}
+{#        <li><a href="{% url 'gyoseki:detail' r.id %}">{{ r.title }}</a></li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+{#{% else %}#}
+{#    <p>No recode are available.</p>#}
+{#{% endif %}#}
+{##}
+{#</body>#}
+{#</html>#}
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}{{ tag.name }}詳細{% endblock %}
+
+{% block contents %}
+    <h1>{{ tag.name }}</h1>
+    <h3>ノート</h3>
+    {{ tag.note|default_if_none:"ノートはありません" }}
+    <h2>業績リスト</h2>
+    {% if recode_list %}
+        <ul>
+            {% for r in recode_list %}
+                <li><a href="{% url 'gyoseki:detail' r.id %}">{{ r.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>表示できるものはありません</p>
+    {% endif %}
+
+{% endblock %}

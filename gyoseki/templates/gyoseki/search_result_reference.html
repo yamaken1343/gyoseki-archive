@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}検索結果(参考文献風形式){% endblock %}
+
+{% block contents %}
+    {% regroup recode_list by division as r_l %}
+    <h1>検索結果(全{{ recode_list.count }}件)</h1>
+    {% for prof in r_l %}
+        <h2>{{ prof.grouper }} </h2><br>
+        {% for profile in prof.list %}
+            <p>
+                <a href="{% url 'gyoseki:detail' profile.id %}"> {{ forloop.counter }}</a>.
+                {{ profile.author }}:
+                "{{ profile.title }}",
+                {{ profile.journal }}{% if profile.vol %}, vol.{{ profile.vol }}{% endif %}{% if profile.no %}, no.{{ profile.no }}{% endif %}{% if profile.page %}, pp.{{ profile.page }}{% endif %}
+                ({{ profile.date.year }})
+            </p>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

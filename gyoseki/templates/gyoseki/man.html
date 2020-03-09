@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% load staticfiles %}
+
+{% block contents %}
+    <h1>マニュアル</h1>
+    <p>
+        マニュアルを確認することができます.
+    </p>
+    <p>
+        <a href="{% static "user.pdf" %}">ユーザー編(PDF)</a>
+    </p>
+    <p>
+        <a href="{% static "admin.pdf" %}">管理者編(PDF)</a>
+    </p>
+    <p>
+        <a href="{% static "register.pdf" %}">登録編(PDF)</a>
+    </p>
+
+{% endblock contents %}

@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}タグ一覧{% endblock %}
+
+{% block contents %}
+    <h1>タグ一覧</h1>
+    {% if tag_list %}
+    <ul>
+    {% for r in tag_list %}
+        <li><a href="{% url 'gyoseki:tag_detail' r.id %}">{{ r.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No recode are available.</p>
+{% endif %}
+    <a href="{% url 'gyoseki:tag_register' %}">新規登録</a>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}検索{% endblock %}
+
+{% block contents %}
+    <h1>検索</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{ formset.management_form }}
+        <table class="table table-borderless">
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.main_author.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.main_author }}</td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.author.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.author }}</td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.author_or.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.author_or }}</td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.title.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.title }}</td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.journal.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.journal }}</td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">検索範囲:</th>
+                <td class="col-md-10 col-lg-10">
+                    <div class="row">
+                        <div class="col-auto">{{ formset.at_date }}</div>
+                        <div class="col-auto text-right">~</div>
+                        <div class="col-auto">{{ formset.end_date }}</div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.division.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">
+                    <div class="row">
+                        {% for f in formset.division %}
+                            <div class="col-md-6 col-lg-4">{{ f }}</div>
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.tag.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">
+                    <div class="row">
+                        {% for f in formset.tag %}
+                            <div class="col-md-6 col-lg-4">{{ f }}</div>
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.review.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.review }}</td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2 col-lg-2 text-right">{{ formset.display_format.label_tag }}</th>
+                <td class="col-md-10 col-lg-10">{{ formset.display_format }}</td>
+            </tr>
+        </table>
+        {% csrf_token %}
+        <button class="btn mx-auto btn-primary d-block" type="submit">検索</button>
+    </form>
+
+{% endblock %}

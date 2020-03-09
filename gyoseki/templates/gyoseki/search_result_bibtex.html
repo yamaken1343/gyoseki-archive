@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load filter %}
+{% block title %}検索結果(bibtex形式){% endblock %}
+
+{% block contents %}
+    <h1>検索結果(bibtex形式)</h1>
+    <p>全部@articleなので気をつけてください. 参照名も適当なので適宜変更してください.</p>
+
+    {% for profile in recode_list %}
+        <p>
+            @article{ {{ profile.main_author.en_name.split.0 }}{{ profile.date.year }}_{{ profile.date.month }},<br>
+            author = "{{ profile.author | replace_comma_and }}", <br>
+            title = "{{ profile.title }}",<br>
+            journal = "{{ profile.journal|default_if_none:"" }}",<br>
+            volume = "{{ profile.vol|default_if_none:"" }}",<br>
+            number = "{{ profile.no|default_if_none:"" }}",<br>
+            pages = "{{ profile.page|default_if_none:"" }}",<br>
+            year = "{{ profile.date.year }}"<br>
+            }
+        </p>
+    {% endfor %}
+{% endblock %}

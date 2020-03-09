@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% block title %}主著者一覧{% endblock %}
+{% load bootstrap4 %}
+
+{% block contents %}
+    <h1>主著者一覧</h1>
+    {% if author_list %}
+    <ul>
+    {% for r in author_list %}
+        <li><a href="{% url 'gyoseki:author_detail' r.id %}">{{ r.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No recode are available.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load staticfiles %}
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>{% block title %}{% endblock %} - 業績アーカイブ</title>
+
+    {#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
+    {#          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap4.3.1.min.css" %}">
+    {#    <link rel="stylesheet" type="text/css"#}
+    {#          href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/datatables.min.css"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static "datatables.min.css" %}">
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+    <script type="text/javascript" src="{% static "jquery3.4.1.min.js" %}"></script>
+    {#    <script type="text/javascript"#}
+    {#            src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/datatables.min.js"></script>#}
+    <script type="text/javascript" src="{% static "datatables.min.js" %}"></script>
+    {#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>#}
+    <script type="text/javascript" src="{% static "bootstrap4.4.1.min.js" %}"></script>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-left: 50px;
+            padding-right: 50px;
+            font-size: 11pt;
+
+        }
+        h2{
+            padding-top: 10px;
+        }
+    </style>
+
+    <link rel="icon" href="{% static "favicon.ico" %}" />
+    {% block header %}{% endblock %}
+</head>
+
+<body>
+<nav class="navbar fixed-top  navbar-expand-lg navbar-light" style="background-color: #e4faff;">
+    <a class="navbar-brand" href="{% url 'gyoseki:index' %}">業績アーカイブ</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gyoseki:authors' %}">主著者 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gyoseki:tags' %}">タグ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gyoseki:search' %}">検索</a></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gyoseki:register' %}">登録</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gyoseki:man' %}">マニュアル</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">管理者</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% bootstrap_messages messages %}
+{% block contents %}{% endblock %}
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>

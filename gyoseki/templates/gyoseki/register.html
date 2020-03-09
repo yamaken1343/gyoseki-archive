@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}新規登録{% endblock %}
+
+{% block contents %}
+    <h1>新規業績登録</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+        {{ formset.management_form }}
+{#    <table>#}
+{#        {{ formset.as_table }}#}
+{#    </table>#}
+    {% bootstrap_form formset %}
+        {% csrf_token %}
+        <button type="submit" class="btn mx-auto btn-primary d-block">登録</button>
+    </form>
+{% endblock contents %}

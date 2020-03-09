@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load filter %}
+{% block title %}bibtex{% endblock %}
+{% block header %}
+    <script>
+    function copyToClipboard() {
+        let bibtexContent = document.getElementById('bibtex');
+        console.log(bibtexContent.innerText);
+        let copyForm = document.createElement("textarea");
+        copyForm.textContent = bibtexContent.innerText;
+
+        bibtexContent.appendChild(copyForm);
+
+        copyForm.select();
+        let res = document.execCommand('copy');
+        bibtexContent.removeChild(copyForm);
+        return res;
+    }
+    </script>
+{% endblock %}
+
+{% block contents %}
+    
+    <p>@articleなので気をつけてください. 参照名も適当なので適宜変更してください.</p>
+
+        <p id="bibtex">
+            @article{ {{ recode.main_author.en_name.split.0 }}{{ recode.date.year }}_{{ recode.date.month }},<br>
+            author = "{{ recode.author | replace_comma_and }}", <br>
+            title = "{{ recode.title }}",<br>
+            journal = "{{ recode.journal|default_if_none:"" }}",<br>
+            volume = "{{ recode.vol|default_if_none:"" }}",<br>
+            number = "{{ recode.no|default_if_none:"" }}",<br>
+            pages = "{{ recode.page|default_if_none:"" }}",<br>
+            year = "{{ recode.date.year }}"<br>
+            }
+        </p>
+
+    <button onclick="copyToClipboard()" class="btn btn-primary">クリップボードにコピー</button>
+{% endblock %}

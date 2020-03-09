@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}{{ recode.title }}{% endblock %}
+
+{% block contents %}
+    <div class="container">
+    <h1>{{ recode.title }}</h1>
+
+        <table class="table table-bordered">
+            <tr>
+                <th scope="row">登録番号</th>
+                <td>{{ recode.id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">主著者</th>
+                <td>{{ recode.main_author }}</td>
+            </tr>
+            <tr>
+                <th scope="row">著者</th>
+                <td>{{ recode.author }}</td>
+            </tr>
+            <tr>
+                <th scope="row">著者(英語表記)</th>
+                <td>{{ recode.en_author|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">タイトル</th>
+                <td>{{ recode.title }}</td>
+            </tr>
+            <tr>
+                <th scope="row">タイトル(英語表記)</th>
+                <td>{{ recode.en_title|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">雑誌名</th>
+                <td>{{ recode.journal|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">雑誌名(英語表記)</th>
+                <td>{{ recode.en_journal|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">巻</th>
+                <td>{{ recode.vol|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">号</th>
+                <td>{{ recode.no|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">ページ</th>
+                <td>{{ recode.page|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">発表日</th>
+                <td>{{ recode.date|date:"Y/m/d" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">業績区分 大 (中: 小分類)</th>
+                <td>{{ recode.division }}</td>
+            </tr>
+            <tr>
+                <th scope="row">言語</th>
+                <td>{{ recode.language|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">場所</th>
+                <td>{{ recode.place|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">場所(英語表記)</th>
+                <td>{{ recode.en_place|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">タグ</th>
+                <td>{% for r in recode.tag.all %} {{ r }} {% endfor %}</td>
+            </tr>
+            <tr>
+                <th scope="row">査読</th>
+                <td>{{ recode.review|yesno:"あり,なし,不明" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">備考</th>
+                <td>{{ recode.note|default_if_none:"" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">PDF</th>
+                <td><a href="/media/{{ recode.file }}">{{ recode.file }}</a></td>
+            </tr>
+        </table>
+    <a href="{% url 'gyoseki:update' recode.id %}">UPDATE</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block contents %}
+    <h1>業績アーカイブ</h1>
+    業績アーカイブへようこそ
+    <div class="card">
+        <h5 class="card-header">
+            最近登録された業績
+        </h5>
+        <div class="card-body">
+            <ul>
+                {% for r in recode_list %}
+                    <li><a href="{% url 'gyoseki:detail' r.id %}">{{ r.main_author }}: {{ r.title }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <div class="text-right">お疲れ様でした</div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-2">
+                <h2>主著者</h2>
+                <p>歴代著者の一覧を見ることができます</p>
+                <p><a class="btn btn-secondary" href="{% url 'gyoseki:authors' %}" role="button">確認する &raquo;</a></p>
+            </div>
+            <div class="col-md-2">
+                <h2>タグ</h2>
+                <p>登録したタグの一覧を見ることができます</p>
+                <p><a class="btn btn-secondary" href="{% url 'gyoseki:tags' %}" role="button">確認する &raquo;</a></p>
+            </div>
+            <div class="col-md-2">
+                <h2>検索</h2>
+                <p>登録された業績を検索することができます</p>
+                <p><a class="btn btn-secondary" href="{% url 'gyoseki:search' %}" role="button">確認する &raquo;</a></p>
+            </div>
+            <div class="col-md-2">
+                <h2>登録</h2>
+                <p>新しい業績を登録することができます</p>
+                <p><a class="btn btn-secondary" href="{% url 'gyoseki:register' %}" role="button">確認する &raquo;</a></p>
+            </div>
+            <div class="col-md-2">
+                <h2>マニュアル</h2>
+                <p>使い方の説明を見ることができます</p>
+                <p><a class="btn btn-secondary" href="{% url 'gyoseki:man' %}" role="button">確認する &raquo;</a></p>
+            </div>
+            <div class="col-md-2">
+                <h2>管理者</h2>
+                <p>管理者用のページです</p>
+                <p><a class="btn btn-secondary" href="/admin" role="button">確認する &raquo;</a></p>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+{% endblock contents %}
